@@ -80,7 +80,7 @@ app.get('/api/ping', (req, res) => {
 // ---------------------
 const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, async () => {
+app.listen(PORT, '0.0.0.0',() => {
   console.log("Server listening on", PORT);
   try {
     await initDb();
