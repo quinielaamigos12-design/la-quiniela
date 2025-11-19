@@ -1,0 +1,1 @@
+Backend instructions:\n\n1) Set ADMIN_PASSWORD env var (default ADMIN123)\n2) Set DATABASE_URL (Railway provides)\n3) npm install && npm start\n

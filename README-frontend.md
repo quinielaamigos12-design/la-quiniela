@@ -1,0 +1,1 @@
+Frontend instructions:\n\n1) Set VITE_API_URL env var to your backend URL\n2) cd frontend && npm install && npm run dev or npm run build for production\
