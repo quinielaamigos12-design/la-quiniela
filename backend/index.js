@@ -8,7 +8,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const DATABASE_URL = process.env.DATABASE_URL || '';
+// ---------------------
+// VALIDAR DATABASE_URL
+// ---------------------
+if (!process.env.DATABASE_URL) {
+  console.error("❌ ERROR: DATABASE_URL no está configurada");
+  process.exit(1);
+}
+
+const DATABASE_URL = process.env.DATABASE_URL;
 
 const pool = new Pool({
   connectionString: DATABASE_URL,
@@ -17,6 +25,9 @@ const pool = new Pool({
     : false
 });
 
+// ---------------------
+// INICIALIZAR BASE DE DATOS
+// ---------------------
 async function initDb() {
   try {
     await pool.query(`
@@ -57,10 +68,16 @@ async function initDb() {
   }
 }
 
+// ---------------------
+// ROUTES
+// ---------------------
 app.get('/api/ping', (req, res) => {
   res.json({ ok: true });
 });
 
+// ---------------------
+// PORT CORRECTO PARA RAILWAY
+// ---------------------
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, async () => {
